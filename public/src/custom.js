@@ -435,24 +435,24 @@ function akun() {
                 nabio(y); 
                 
                 if (y == 0){
-                    diri.classList.remove("hidden")
-                    diri.classList.add("block")
+                    diri.classList.remove("hiden")
+                    diri.classList.add("md:flex")
                     alamat.classList.add("hidden")
                     alamat.classList.remove("block")
                     aman.classList.remove("block")
                     aman.classList.add("hidden")
 
                 } else if (y == 1){
-                    diri.classList.add("hidden")
-                    diri.classList.remove("block")
+                    diri.classList.add("hiden")
+                    diri.classList.remove("md:flex")
                     alamat.classList.remove("hidden")
                     alamat.classList.add("block")
                     aman.classList.remove("block")
                     aman.classList.add("hidden")
 
                 } else if (y == 2) {
-                    diri.classList.add("hidden")
-                    diri.classList.remove("block")
+                    diri.classList.add("hiden")
+                    diri.classList.remove("md:flex")
                     alamat.classList.add("hidden")
                     alamat.classList.remove("block")
                     aman.classList.add("block")
@@ -596,7 +596,8 @@ function beli() {
     var hrgKurir    = document.getElementById("harga-kurir");
     var kurir       = document.querySelectorAll(".kurir")
     var reg         = document.getElementById("ubah-reguler")
-
+    var ekn         = document.getElementById("ubah-ekonomi")
+    var kar         = document.getElementById("ubah-kargo")
 
     for (i = 0; i < diveg.length; i++){            
         diveg[i].addEventListener("click", function(){
@@ -830,11 +831,11 @@ function keranjang() {
     var totalHrg    = document.getElementById("total-harga");
     var totalDskn   = document.getElementById("total-diskon");
     var totalBlnj   = document.getElementById("total-belanja");
+    var qty         = keranjang.querySelectorAll("#qty")
     let number      = new Intl.NumberFormat('en-US');
     let fungHarga   = "";
-    let fungDiskon  = "";      
-
-
+    let fungDiskon  = "";
+            
     for( var i = 0; i < input.length; i++){
         function harga(){
             let cost = 0;
@@ -845,9 +846,7 @@ function keranjang() {
                 cost += parseInt(format);
             }     
             totalHrg.innerHTML = number.format(cost);                  
-            fungHarga = totalHrg.innerHTML = number.format(cost);
-            localStorage.setItem("harga", fungHarga)
-            totalHrg.innerHTML = localStorage.getItem("harga")            
+            fungHarga = totalHrg.innerHTML = number.format(cost);        
         }
 
         function diskon(){
@@ -856,7 +855,6 @@ function keranjang() {
                 var kecil   = ex.querySelector(".harga-brg").innerHTML.replace(/[^0-9]/g,"");
                 var gede    = ex.querySelector(".diskon-harga").innerHTML.replace(/[^0-9]/g,"");
 
-
                 collet += parseInt(gede) - parseInt(kecil);
             })
             totalDskn.innerHTML = number.format(collet); 
@@ -864,7 +862,6 @@ function keranjang() {
         }
 
         function jumlah(){
-            jmlBrg.innerHTML = kontainer.length;
             hiddenJml.classList.remove("hidden");
 
             //total-belanja
@@ -874,9 +871,14 @@ function keranjang() {
             totalBlnj.innerHTML = number.format(hasil);
         }
 
+        
         (function(index){
             input[index].addEventListener("click", function(){
-                
+                let count       = 0;
+                var cekHarga    = 0;
+                var cekDiskon   = 0;
+                var itemSum     = 0;
+
                 if(!this.classList.contains("pilih-item")){                        
                     for (var i = 0; i < valueInp.length; i++){
                         valueInp[i].checked = this.checked;
@@ -890,7 +892,26 @@ function keranjang() {
                     
                     if (this.checked){
                         harga(), diskon(), jumlah()
-                        document.getElementById("sampah-hidden").classList.remove("hidden");
+                        document.getElementById("sampah-hidden").classList.remove("hidden")
+
+                        var ceklisty    = document.querySelectorAll(".ceklisty");
+                        ceklisty.forEach(ex => {
+                            var pro = ex.parentNode.querySelector("#qty").innerHTML;
+                            itemSum += parseInt(pro)
+
+                            var authen  = ex.parentNode.querySelector(".diskon-harga").innerHTML;
+                            var within  = authen.replace(/[^0-9]/g,"");
+                            cekHarga += parseInt(pro) * parseInt(within)
+                            
+                            var pre = ex.parentNode.querySelector(".harga-brg").innerHTML;
+                            var und = pre.replace(/[^0-9]/g,"");
+                            cekDiskon += parseInt(pro) * parseInt(und);
+                        })
+
+                        jmlBrg.innerHTML    = itemSum;
+                        totalHrg.innerHTML  = number.format(cekHarga);
+                        totalDskn.innerHTML = number.format(cekHarga - cekDiskon);
+                        totalBlnj.innerHTML = number.format(cekDiskon);
 
                     } else{
                         document.getElementById("sampah-hidden").classList.add("hidden");
@@ -901,16 +922,12 @@ function keranjang() {
                     }
                     
                 } else {
-                    let count       = 0;
-                    let isCheck     = false;
-                    var cekHarga    = 0;
-                    var cekDiskon   = 0;
 
                     for (var i = 0; i < valueInp.length; i++){
                         if (valueInp[i].checked){
                             count++
                         }
-                    };                        
+                    }
 
                     if (this.checked){
                         this.parentNode.classList.add("ceklisty")
@@ -920,30 +937,37 @@ function keranjang() {
                     
                     var ceklisty    = document.querySelectorAll(".ceklisty");
                     ceklisty.forEach(ex => {
+                        var pro = ex.parentNode.querySelector("#qty").innerHTML;
+                        itemSum += parseInt(pro)
+
                         var authen  = ex.parentNode.querySelector(".diskon-harga").innerHTML;
                         var within  = authen.replace(/[^0-9]/g,"");
-                        cekHarga += parseInt(within)  
+                        cekHarga += parseInt(pro) * parseInt(within)
                         
                         var pre = ex.parentNode.querySelector(".harga-brg").innerHTML;
                         var und = pre.replace(/[^0-9]/g,"");
-                        cekDiskon += parseInt(und);
+                        cekDiskon += parseInt(pro) * parseInt(und);
                     })
 
+                    jmlBrg.innerHTML    = itemSum;
                     totalHrg.innerHTML  = number.format(cekHarga);
                     totalDskn.innerHTML = number.format(cekHarga - cekDiskon);
                     totalBlnj.innerHTML = number.format(cekDiskon);
-                    
+
                     if (valueInp.length == count){
                         cekAll.checked = this.checked;
                         harga(), diskon(), jumlah();
                         document.getElementById("sampah-hidden").classList.remove("hidden");
+                        jmlBrg.innerHTML    = itemSum;
+                        totalHrg.innerHTML  = number.format(cekHarga);
+                        totalDskn.innerHTML = number.format(cekHarga - cekDiskon);
+                        totalBlnj.innerHTML = number.format(cekDiskon);
 
                     } else if (count < 1) {
                             hiddenJml.classList.add("hidden");
                             document.getElementById("sampah-hidden").classList.add("hidden");
 
                     } else {
-                            jmlBrg.innerHTML    = count;
                             hiddenJml.classList.remove("hidden");
                             cekAll.checked = false;  
                             document.getElementById("sampah-hidden").classList.remove("hidden");                   
@@ -1001,7 +1025,6 @@ function keranjang() {
         butSub.prepend(konSub)
 
     })
-
 }
 
 function signup() {
@@ -1166,6 +1189,27 @@ function product() {
         }
         totalCount.innerHTML = count;
     };
+
+    var detail = document.getElementById('detail-click');
+    var item   = document.getElementById('detail-item');
+    var detil = document.getElementById('detil');
+    var tutup = document.getElementById('tutup');
+    detail.addEventListener("click", function(){
+        if (item.classList.contains('hidden')) {
+            item.classList.add('block');
+            item.classList.remove('hidden');
+            detil.classList.add('hidden');
+            tutup.classList.remove('hidden');
+            tutup.classList.add('flex');
+        } else {
+            item.classList.add('hidden');
+            item.classList.remove('block');
+            detil.classList.remove('hidden');
+            tutup.classList.remove('flex');
+            tutup.classList.add('hidden');
+        }
+
+    })
 }
 
 function tou() {
@@ -1283,4 +1327,21 @@ function store() {
             carousel.querySelectorAll('.dot')[item].classList.add('active');
        }
   
+}
+
+function love() {
+    var love = document.querySelectorAll("#love")
+    let count = 0
+
+    for (i = 0; i < love.length; i++){
+        love[i].onclick = function() {
+            if (count++ % 2 == 0){
+                this.querySelector("#norm").classList.remove("hidden")
+                this.querySelector("#pink").classList.add("hidden")
+            } else {
+                this.querySelector("#pink").classList.remove("hidden")
+                this.querySelector("#norm").classList.add("hidden")                    
+            }
+        }
+    }
 }
