@@ -38,11 +38,41 @@ $routes->get('/akun/bayar', 'Home::bayar');
 $routes->get('/beli', 'Home::beli');
 $routes->get('/keranjang', 'Home::keranjang');
 $routes->get('/login', 'Home::login');
-$routes->get('/signup', 'Home::signup');
-$routes->get('/login/forgot', 'Home::forgot');
+$routes->get('/login/forgot', 'Home::forgt');
 $routes->get('/product', 'Home::product');
+$routes->get('/signup', 'Home::signup');;
 $routes->get('/terms', 'Home::terms');
 $routes->get('/wishlist', 'Home::wishlist');
+
+$routes->get('/adm', 'Dashboard::dashboard');
+$routes->get('/adm/balance', 'Admin::balance');
+$routes->get('/adm/dash/penilaian', 'Dashboard::penilaian');
+$routes->get('/adm/dash/penilaian/detail', 'Dashboard::penilaianDetail');
+$routes->get('/adm/dash/pesan', 'Dashboard::pesan');
+$routes->get('/adm/dash/pesan/detail', 'Dashboard::pesanDetail');
+$routes->get('/adm/dash/post', 'Dashboard::post');
+$routes->get('/adm/dash/post/detail', 'Dashboard::postDetail');
+
+$routes->get('/adm/stocks', 'Stocks::stocks');
+$routes->get('/adm/stocks/in', 'Stocks::stockin');
+$routes->get('/adm/stocks/out', 'Stocks::stockout');
+$routes->get('/adm/stocks/out/product', 'Stocks::product');
+$routes->get('/adm/stocks/retur', 'Stocks::retur');
+
+$routes->get('/adm/inventory', 'Inventory::inventory');
+$routes->get('/adm/inventory/edit', 'Inventory::edit');
+$routes->get('/adm/inventory/edit/gambar', 'Inventory::editGambar');
+$routes->get('/adm/inventory/tambah', 'Inventory::tambah');
+$routes->get('/adm/inventory/tambah/gambar', 'Inventory::tambahGambar');
+
+$routes->get('/adm/order', 'Order::order');
+$routes->get('/adm/order/pesanan', 'Order::pesanan');
+$routes->get('/adm/order/pembayaran', 'Order::bayar');
+$routes->get('/adm/order/dikirim', 'Order::kirim');
+$routes->get('/adm/order/diterima', 'Order::terima');
+
+$routes->get('/adm/settings', 'Admin::settings');
+
 
 
 
@@ -63,3 +93,4 @@ $routes->get('/wishlist', 'Home::wishlist');
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+

@@ -1,4 +1,10 @@
 /* width store item */
+@media (max-width: 431px) {
+    .produk {
+        width: 45%;
+    }
+}
+
 @media (min-width: 432px) {
     .produk{
         width: 200px;
@@ -11,9 +17,12 @@
     }
 }
 
-.produk {
-    width: 45%;
+@media (min-width: 640px) {
+    .produk{
+        width: auto;
+    }
 }
+
 
 
 /* tag promo store */
