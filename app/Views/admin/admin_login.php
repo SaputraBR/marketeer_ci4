@@ -3,8 +3,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MarketEer</title>
-  <link rel="stylesheet" type="text/css" href="../public/dist/tailwind.css">
-  <link rel="stylesheet" type="text/css" href="../public/src/custom.css">
+  <link rel="stylesheet" type="text/css" href="/dist/tailwind.css">
+  <link rel="stylesheet" type="text/css" href="/src/custom.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
         bottom: 0;
         left: 0;
         margin: auto;
-        background-image: url(../public/img/1.png);
+        background-image: url(/img/1.png);
         background-size: cover;
         border-radius: 2%;
         overflow: hidden;
@@ -67,9 +67,7 @@
                         <p class="font-bold text-lg text-white">MarketEer &copy; 2022</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </body>

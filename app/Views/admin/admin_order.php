@@ -11,7 +11,7 @@
                         <p class="flex justify-center font-semibold text-xl">pesanan</p>
                     </div>
                     <div class="w-36">
-                        <a href=/adm/order/pembayaran" class="flex justify-center bg-[#fffab0] hover:bg-[#ede8a7] rounded-xl mx-4 p-6">
+                        <a href="/adm/order/pembayaran" class="flex justify-center bg-[#fffab0] hover:bg-[#ede8a7] rounded-xl mx-4 p-6">
                             <i class="fa-solid fa-money-bill fa-2x"></i>
                         </a>
                         <p class="flex justify-center font-semibold text-xl">pembayaran</p>

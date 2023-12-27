@@ -40,13 +40,13 @@
             <div class="grid grid-cols-2 gap-4 w-full" id="translate" style="transform: translateX(25%);">
                 <div class="col-span-1 w-full font-semibold" id="slide" style="transition: opacity 0.3s; opacity: 1;">
                     <div class="bg-slate-100 border-2 border-[#0033ff]">
-                        <a href="/adm/balance/rekap_penjualan">
+                        <a href="/adm/balance/rekap">
                             <div class="py-2 px-3 hover:bg-slate-200 border-b border-[#0033ff]">Rekap Penjualan</div>
                         </a>
                         <a href="/adm/balance/penjualan">
                             <div class="py-2 px-3 hover:bg-slate-200 border-b border-[#0033ff]">Laporan Penjualan</div>
                         </a>
-                        <a href="a/adm/balance/penjualan_detail">
+                        <a href="/adm/balance/jual_detail">
                             <div class="py-2 px-3 hover:bg-slate-200 border-b border-[#0033ff]">Laporan Penjualan Detail</div>
                         </a>
                         <a href="/adm/balance/margin">
@@ -63,7 +63,7 @@
                         <a href="/adm/balance/beli">
                             <div class="py-2 px-3 hover:bg-slate-200 border-b border-[#0033ff]">Rekap Pembelian</div>
                         </a>
-                        <a href="/adm/balance/beli/pbarang">
+                        <a href="/adm/balance/beli_barang">
                             <div class="py-2 px-3 hover:bg-slate-200">Pembelian Per Barang</div>
                         </a>                                                
                     </div>                    

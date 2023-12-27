@@ -44,8 +44,9 @@ $routes->get('/signup', 'Home::signup');;
 $routes->get('/terms', 'Home::terms');
 $routes->get('/wishlist', 'Home::wishlist');
 
+$routes->get('/adm/login', 'Admin::login');
+
 $routes->get('/adm', 'Dashboard::dashboard');
-$routes->get('/adm/balance', 'Admin::balance');
 $routes->get('/adm/dash/penilaian', 'Dashboard::penilaian');
 $routes->get('/adm/dash/penilaian/detail', 'Dashboard::penilaianDetail');
 $routes->get('/adm/dash/pesan', 'Dashboard::pesan');
@@ -66,10 +67,22 @@ $routes->get('/adm/inventory/tambah', 'Inventory::tambah');
 $routes->get('/adm/inventory/tambah/gambar', 'Inventory::tambahGambar');
 
 $routes->get('/adm/order', 'Order::order');
+$routes->get('/adm/order/detail', 'Order::orderDetail');
 $routes->get('/adm/order/pesanan', 'Order::pesanan');
+$routes->get('/adm/order/pesanan/konfirmasi', 'Order::pesanKonfirm');
 $routes->get('/adm/order/pembayaran', 'Order::bayar');
 $routes->get('/adm/order/dikirim', 'Order::kirim');
 $routes->get('/adm/order/diterima', 'Order::terima');
+$routes->get('/adm/order/diterima/detail', 'Order::terimaDetail');
+
+$routes->get('/adm/balance', 'Balance::balance');
+$routes->get('/adm/balance/rekap', 'Balance::rekap');
+$routes->get('/adm/balance/penjualan', 'Balance::penjualan');
+$routes->get('/adm/balance/jual_detail', 'Balance::detail');
+$routes->get('/adm/balance/margin', 'Balance::margin');
+$routes->get('/adm/balance/nielsen', 'Balance::nielsen');
+$routes->get('/adm/balance/beli', 'Balance::beli');
+$routes->get('/adm/balance/beli_barang', 'Balance::barang');
 
 $routes->get('/adm/settings', 'Admin::settings');
 
