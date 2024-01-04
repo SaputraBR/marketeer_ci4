@@ -8,4 +8,9 @@ class Admin extends BaseController
     {
         return view('admin/admin_login');
     }
+
+    public function settings()
+    {
+        return view('admin/admin_settings');
+    }
 }

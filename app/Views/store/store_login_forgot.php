@@ -15,7 +15,7 @@
                     <input type="text" name="email" placeholder="masukkan email pemulihan" class="block w-full mb-5 mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
                     <div class="flex justify-center mt-4 sm:mt-7">
-                        <button type="submit" class="w-full py-1 rounded-lg font-bold text-white border-2 bg-login">Submit</button>
+                        <button type="submit" class="w-full py-2 rounded-lg font-bold text-white border-2 bg-login">Submit</button>
                     </div>
                 </form>
                 <div class="flex mt-12 border-t-2 border-[#ff4800] w-3/4 mx-auto">

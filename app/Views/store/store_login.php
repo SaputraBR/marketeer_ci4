@@ -10,13 +10,18 @@
                 <div class="flex justify-center w-full h-auto">
                     <div class="exo text-3xl text-[#ff4800]">MarketEer</div>
                 </div>
-                <form action="" class="w-4/5 mx-auto mt-6 sm:pb-4">
+                <form action="/login/verify" method="post" enctype="multipart/form-data" class="w-4/5 mx-auto mt-6 sm:pb-4">
+                    <?php if(!empty(session()->getFlashdata('error'))){ ?>
+                        <div class="alert alert-danger">
+                            <?php echo session()->getFlashdata('error');?>
+                        </div>
+                    <?php } ?>
                     <input type="text" name="user" placeholder="username, email atau no telepon" class="block w-full mb-5 mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
                     <input type="password" name="password" placeholder="password" class="block w-full mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
                     <div class="flex justify-center mt-4 sm:mt-7">
-                        <button type="submit" class="w-full py-1 rounded-lg font-bold text-white border-2 bg-login">Login</button>
+                        <button type="submit" class="w-full py-2 rounded-lg font-bold text-white border-2 bg-login">Login</button>
                     </div>
                 </form>
                 <div class="flex border-t-2 border-[#ff4800] w-3/4 mx-auto">

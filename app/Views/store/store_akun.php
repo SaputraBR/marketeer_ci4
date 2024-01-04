@@ -49,6 +49,15 @@
             fill: #ff4800;
             color: #ff0000;
         }
+
+        #foto {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
     </style>
 <?= $this->endSection()?>
 
@@ -102,156 +111,152 @@
             </div>
         </div>
         <div class="col-span-2 w-auto sm:mr-4" id="main-section">
-            <section class="w-auto sm:w-full h-auto bg-white border-2 border-slate-300 relative pb-2 sm:pb-8" id="data-pribadi">
-                <div class="flex bg-gray-300 divide-x-2 divide-gray-100" id="navbar-bio">
-                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio navbio-aktif">Biodata</span>
-                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Alamat</span>
-                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Keamanan</span>
-                </div>
+            
+            <?php foreach($client as $user) :?>
 
-                <div class="flex relative h-auto py-4 w-full absolute">
-                    <div class="w-full h-auto sm:px-8 shrink-0 md:flex" id="biodata-diri">
-                        <div class="w-auto md:w-1/3 h-36 sm:h-48 relative sm:text-base text-sm">
-                            <p class="ml-2 sm:ml-4 mb-1 font-semibold">Photo Profil</p>
-                            <div class="w-full sm:w-auto flex justify-center md:block">
-                                <img src="/img/Johnny_Depp.jpg" id="PP" class="rounded-full border-2 border-slate-800 h-24 w-24 sm:w-36 sm:h-36 md:h-full md:w-48 object-cover mt-2" alt="">
-                                <div class="absolute bottom-0">
-                                    <button class="dropbn flex px-2 sm:px-4 py-1 rounded-sm font-semibold bg-amber-300 shadow-xl hover:bg-amber-400" id="button-down" onclick="myFunctions()">
-                                        <i class="self-center fa-solid fa-pencil mr-1"></i>
-                                        <p>edit</p>    
-                                    </button>
-                                    <div class="absolute mt-1 bg-slate-200 rounded-sm drop-content hidden" id="drop-content">
-                                        <button class="w-full py-1 font-semibold hover:bg-slate-300">change</button>
-                                        <button class="w-full py-1 font-semibold hover:bg-slate-300">delete</button>
+
+
+                <section class="w-auto sm:w-full h-auto bg-white border-2 border-slate-300 relative pb-2 sm:pb-8" id="data-pribadi">
+                    <div class="flex bg-gray-300 divide-x-2 divide-gray-100" id="navbar-bio">
+                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio navbio-aktif">Biodata</span>
+                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Alamat</span>
+                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Keamanan</span>
+                    </div>
+
+                    <div class="flex relative h-auto py-4 w-full absolute">
+                        <div class="w-full h-auto sm:px-8 shrink-0 md:flex" id="biodata-diri">
+                            <div class="w-auto md:w-1/3 h-36 sm:h-48 relative sm:text-base text-sm">
+                                <p class="ml-2 sm:ml-4 mb-1 font-semibold">Photo Profil</p>
+                                <div class="w-full sm:w-auto flex justify-center md:block">
+                                    <img src="/img/Johnny_Depp.jpg" id="PP" class="rounded-full border-2 border-slate-800 h-24 w-24 sm:w-36 sm:h-36 md:h-full md:w-48 object-cover mt-2" alt="">
+                                    <div class="absolute bottom-0">
+                                        <button class="dropbn flex px-2 sm:px-4 py-1 rounded-sm font-semibold bg-amber-300 shadow-xl hover:bg-amber-400" id="button-down" onclick="myFunctions()">
+                                            <i class="self-center fa-solid fa-pencil mr-1"></i>
+                                            <p>edit</p>    
+                                        </button>
+                                        <div class="absolute w-full mt-1 bg-slate-200 rounded-sm drop-content hidden" id="drop-content">
+                                            <label for="foto" class="flex justify-center py-1 font-semibold hover:bg-slate-300">change</label>
+                                            <input type="file" name="foto" id="foto">
+                                            <button class="w-full py-1 font-semibold hover:bg-slate-300">delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-auto ml-2 sm:text-base text-sm px-2 sm:px-0 mt-3 sm:mt-0">
+                                <h1 class="font-semibold">Ubah Data Pribadi</h1>
+                                <div class="grid grid-cols-12 gap-2 mt-2">
+                                    <p class="col-span-4">Nama</p>
+                                    <p class="col-span-1 sm:ml-auto">:</p>
+                                    <p class="col-span-7"><?= $user["nama"]?></p>
+                                </div>
+                                <div class="grid grid-cols-12 gap-2">
+                                    <p class="col-span-4">Tanggal Lahir</p>
+                                    <p class="col-span-1 sm:ml-auto">:</p>
+                                    <p class="col-span-7"><?= $user["lahir"]?></p>
+                                </div>
+                                <div class="grid grid-cols-12 gap-2">
+                                    <p class="col-span-4">Jenis Kelamin</p>
+                                    <p class="col-span-1 sm:ml-auto">:</p>
+                                    <p class="col-span-7"><?= $user["kelamin"]?></p>
+                                </div>
+                                <div class="grid grid-cols-12 gap-2 mt-2">
+                                    <p class="col-span-4">Email</p>
+                                    <p class="col-span-1 sm:ml-auto">:</p>
+                                    <p class="col-span-7"><?= $user["email"]?></p>
+                                </div>
+                                <div class="grid grid-cols-12 gap-2">
+                                    <p class="col-span-4">No Telepon</p>
+                                    <p class="col-span-1 sm:ml-auto">:</p>
+                                    <p class="col-span-7"><?= $user["hp"]?></p>
+                                </div>
+                                <div class="mt-4 sm:mt-8 flex">
+                                    <button class="px-4 py-2 text-white font-semibold bg-[#ff4800] hover:bg-[#dc3e00]">change</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-auto ml-2 sm:text-base text-sm px-2 sm:px-0 mt-3 sm:mt-0">
-                            <h1 class="font-semibold">Ubah Data Pribadi</h1>
-                            <div class="grid grid-cols-12 gap-2 mt-2">
-                                <p class="col-span-4">Nama</p>
-                                <p class="col-span-1 sm:ml-auto">:</p>
-                                <p class="col-span-7">John Christopher Depp</p>
+
+                        <div class="w-full h-auto bg-white px-4 sm:px-0 shrink-0 hidden" id="data-alamat">
+                            <?php foreach($user["alamat"] as $id => $address) :?>    
+                                <div class="w-auto sm:w-2/3 h-auto mx-auto mt-4 relative rounded-lg hover:cursor-pointer border border-slate-600 address">
+                                    <div class="px-6 sm:px-8 py-4 relative sm:text-base text-sm alamats">
+                                        <span class="right-0 mr-4 absolute check-corner hidden">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-7 h-7" id="centang">
+                                                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                                            </svg>
+                                        </span>
+                                        <p><?= $address["tempat"]?></p>
+                                        <h1><?= $user["nama"]?></h1>
+                                        <p><?= $address["alamat"] ?></p>
+                                        <p><?= $address["phone"] ?></p>
+                                    </div>
+                                </div>
+                            <?php endforeach;?>
+                        </div>
+
+
+                        <div class="w-full h-auto flex bg-white shrink-0 hidden" id="keamanan">
+                            <div class="space-y-2 pl-4 self-center" id="tombol-ubah">
+                                <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block ubah-aktif">Ubah Password</button>
+                                <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block">Ubah Email</button>
+                                <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block">Ubah No Telp</button>
                             </div>
-                            <div class="grid grid-cols-12 gap-2">
-                                <p class="col-span-4">Tanggal Lahir</p>
-                                <p class="col-span-1 sm:ml-auto">:</p>
-                                <p class="col-span-7">16 SM</p>
-                            </div>
-                            <div class="grid grid-cols-12 gap-2">
-                                <p class="col-span-4">Jenis Kelamin</p>
-                                <p class="col-span-1 sm:ml-auto">:</p>
-                                <p class="col-span-7">Pria</p>
-                            </div>
-                            <div class="grid grid-cols-12 gap-2 mt-2">
-                                <p class="col-span-4">Email</p>
-                                <p class="col-span-1 sm:ml-auto">:</p>
-                                <p class="col-span-7">JackSparrow@gmail.com</p>
-                            </div>
-                            <div class="grid grid-cols-12 gap-2">
-                                <p class="col-span-4">No Telepon</p>
-                                <p class="col-span-1 sm:ml-auto">:</p>
-                                <p class="col-span-7">0871-2121-9435</p>
-                            </div>
-                            <div class="mt-4 sm:mt-8 flex">
-                                <button class="px-4 py-2 text-white font-semibold bg-[#ff4800] hover:bg-[#dc3e00]">change</button>
+                            <div class="w-full sm:ml-4 lg:ml-10 p-4">
+                                <form action="" class="relative" id="form-pass">
+                                    <h1 class="text-lg font-semibold mb-3">Ubah Password</h1>
+                                    <div class="md:grid grid-cols-12">
+                                        <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Password Lama</label>
+                                        <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
+                                    </div>
+                                    <div class="md:grid grid-cols-12">
+                                        <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Password Baru</label>
+                                        <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
+                                    </div>
+                                    <div class="md:grid grid-cols-12">
+                                        <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Verifikasi Password</label>
+                                        <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
+                                    </div>
+            
+                                    <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
+                                    <p class="text-white">Ganti</p>
+                                    </button>
+                                </form>
+
+                                <form action="" class="relative hidden" id="form-email">
+                                    <h1 class="text-lg font-semibold mb-3">Ubah Email</h1>
+                                    <div class="md:grid grid-cols-12 mb-2">
+                                        <p class="self-center col-span-3 mr-3">Email</p>
+                                        <p class="block col-span-9 w-auto m-1"><?= $user["email"]?></p>
+                                    </div>
+                                    <div class="md:grid grid-cols-12">
+                                        <label for="nama" class="self-center col-span-3 mr-3">Email Baru</label>
+                                        <input type="password" name="nama" class="block col-span-9 w-40 sm:w-auto m-1 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
+                                    </div>
+            
+                                    <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
+                                    <p class="text-white">Ganti</p>
+                                    </button>
+                                </form>
+
+                                <form action="" class="relative hidden" id="form-notel">
+                                    <h1 class="text-lg font-semibold mb-3">Ubah No Telepon</h1>
+                                    <div class="md:grid grid-cols-12 mb-2">
+                                        <p class="self-center col-span-3 mr-3">No Telp</p>
+                                        <p class="block col-span-9 w-auto m-1"><?= $user["hp"] ?></p>
+                                    </div>
+                                    <div class="md:grid grid-cols-12">
+                                        <label for="nama" class="self-center col-span-3 mr-3">No Telp Baru</label>
+                                        <input type="password" name="nama" class="block col-span-9 w-40 sm:w-auto m-1 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
+                                    </div>
+            
+                                    <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
+                                    <p class="text-white">Ganti</p>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <div class="w-full h-auto bg-white px-4 sm:px-0 shrink-0 hidden" id="data-alamat">
-                        <div class="w-auto sm:w-2/3 h-auto mx-auto mt-4 relative rounded-lg hover:cursor-pointer border border-slate-600 address alamat-aktif">
-                            <div class="px-6 sm:px-8 py-4 relative sm:text-base text-sm alamats">
-                                <span class="right-0 mr-4 absolute check-corner">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-7 h-7" id="centang">
-                                        <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
-                                    </svg>
-                                </span>
-                                <p>Rumah</p>
-                                <h1>John Christopher Depp</h1>
-                                <p>Jl. Nologaten Gg. Kenari No.191, Nologaten, Caturtunggal, Depok, Sleman, DI Yogyakarta</p>
-                                <p>6285756168468</p>
-                            </div>
-                        </div>
-
-                        <div class="w-auto sm:w-2/3 h-auto mx-auto mt-4 relative rounded-lg hover:cursor-pointer border border-slate-600 address">
-                            <div class="px-6 sm:px-8 py-4 relative sm:text-base text-sm alamats">
-                                <span class="right-0 mr-4 absolute check-corner hidden">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="w-7 h-7" id="centang">
-                                        <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
-                                    </svg>
-                                </span>
-                                <p>Kantor</p>
-                                <h1>John Christopher Depp</h1>
-                                <p>Jl. Rambutan Raya I, Perumnas, Tonogoro, Kalinegoro, Mertoyudan, Magelang, Jawa Tengah</p>
-                                <p>6284746845535</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="w-full h-auto flex bg-white shrink-0 hidden" id="keamanan">
-                        <div class="space-y-2 pl-4 self-center" id="tombol-ubah">
-                            <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block ubah-aktif">Ubah Password</button>
-                            <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block">Ubah Email</button>
-                            <button class="button-ubah w-14 sm:w-16 md:w-32 lg:w-36 py-2 text-xs sm:text-sm md:text-base bg-[#ff4800] hover:bg-[#dc3e00] text-white font-semibold block">Ubah No Telp</button>
-                        </div>
-                        <div class="w-full sm:ml-4 lg:ml-10 p-4">
-                            <form action="" class="relative" id="form-pass">
-                                <h1 class="text-lg font-semibold mb-3">Ubah Password</h1>
-                                <div class="md:grid grid-cols-12">
-                                    <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Password Lama</label>
-                                    <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
-                                </div>
-                                <div class="md:grid grid-cols-12">
-                                    <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Password Baru</label>
-                                    <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
-                                </div>
-                                <div class="md:grid grid-cols-12">
-                                    <label for="nama" class="block self-center col-span-3 mr-3 text-sm sm:text-base">Verifikasi Password</label>
-                                    <input type="password" name="nama" class="sm:col-span-9 w-40 sm:w-auto m-1 mb-2 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
-                                </div>
-        
-                                <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
-                                   <p class="text-white">Ganti</p>
-                                </button>
-                            </form>
-
-                            <form action="" class="relative hidden" id="form-email">
-                                <h1 class="text-lg font-semibold mb-3">Ubah Email</h1>
-                                <div class="md:grid grid-cols-12 mb-2">
-                                    <p class="self-center col-span-3 mr-3">Email</p>
-                                    <p class="block col-span-9 w-auto m-1">JackSparrow@gmail.com</p>
-                                </div>
-                                <div class="md:grid grid-cols-12">
-                                    <label for="nama" class="self-center col-span-3 mr-3">Email Baru</label>
-                                    <input type="password" name="nama" class="block col-span-9 w-40 sm:w-auto m-1 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
-                                </div>
-        
-                                <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
-                                   <p class="text-white">Ganti</p>
-                                </button>
-                            </form>
-
-                            <form action="" class="relative hidden" id="form-notel">
-                                <h1 class="text-lg font-semibold mb-3">Ubah No Telepon</h1>
-                                <div class="md:grid grid-cols-12 mb-2">
-                                    <p class="self-center col-span-3 mr-3">No Telp</p>
-                                    <p class="block col-span-9 w-auto m-1">0871-2121-9435</p>
-                                </div>
-                                <div class="md:grid grid-cols-12">
-                                    <label for="nama" class="self-center col-span-3 mr-3">No Telp Baru</label>
-                                    <input type="password" name="nama" class="block col-span-9 w-40 sm:w-auto m-1 rounded-md px-2 py-1 bg-gray-100 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none">
-                                </div>
-        
-                                <button type="submit" class="absolute right-0 rounded-md mt-2 px-3 py-1 bg-[#2658e2] hover:bg-[#1d4ed8]">
-                                   <p class="text-white">Ganti</p>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            <?php endforeach;?>
 
             <section class="w-full h-auto bg-white border-2 border-slate-300 relative mt-10" id="pesan">
                 <div class="flex bg-gray-300 px-4 py-1">

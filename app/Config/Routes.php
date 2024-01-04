@@ -32,17 +32,20 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/akun', 'Home::client');
-$routes->get('/akun/pesan', 'Home::pesan');
-$routes->get('/akun/bayar', 'Home::bayar');
-$routes->get('/beli', 'Home::beli');
-$routes->get('/keranjang', 'Home::keranjang');
 $routes->get('/login', 'Home::login');
-$routes->get('/login/forgot', 'Home::forgt');
+$routes->add('/login/verify', 'Home::verify');
+$routes->get('/login/forgot', 'Home::forgot');
 $routes->get('/product', 'Home::product');
 $routes->get('/signup', 'Home::signup');;
 $routes->get('/terms', 'Home::terms');
-$routes->get('/wishlist', 'Home::wishlist');
+$routes->group('', ['filter' => 'storeFilter'], static function($routes){
+    $routes->get('/akun', 'Home::client');
+    $routes->get('/akun/pesan', 'Home::pesan');
+    $routes->get('/akun/bayar', 'Home::bayar');
+    $routes->get('/beli', 'Home::beli');
+    $routes->get('/keranjang', 'Home::keranjang');
+    $routes->get('/wishlist', 'Home::wishlist');
+});
 
 $routes->get('/adm/login', 'Admin::login');
 

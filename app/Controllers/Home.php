@@ -2,8 +2,36 @@
 
 namespace App\Controllers;
 
+use App\Models\ClientModel; 
+
 class Home extends BaseController
 {
+    public function verify()
+    {
+        $dbase = new ClientModel;
+        $nama  = $this->request->getPost("nama");
+        $pass  = $this->request->getPost("password");
+        $verif = $dbase->where(['nama', $nama])->first();
+
+        if ($verif)
+        {
+            $word = $verif["password"];
+            if (password_verify($pass, $word))
+            {
+                session()->set([
+                    "user" => $verif["nama"],
+                    "logged_in" => TRUE,
+                ]);
+            } else {
+                session()->setFlashdata('error', 'Data yang anda masukkan salah!');
+                return redirect()->back();
+            }
+        } else {
+            session()->setFlashdata('error', 'Data yang anda masukkan salah!');
+            return redirect()->back();
+        }
+    }
+
     public function index()
     {
         return view('store/store');
@@ -21,7 +49,10 @@ class Home extends BaseController
 
     public function client()
     {
-        return view('store/store_akun');
+        $klien = new ClientModel();
+        $data['client'] = $klien->bismillah();
+
+        return view('store/store_akun', $data);
     }
 
     public function forgot()

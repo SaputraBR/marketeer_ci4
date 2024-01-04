@@ -11,9 +11,18 @@ class Admin extends Seeder
         $begin = [
                 'nama' => 'Admin',
                 'email' => 'adm.marketeer@gmail.com',
-                'password' => '12345',
+                'photo' => 'Johnny_Depp.jpg',
+                'password' => '12345'
             ];
 
         $this->db->table('admin')->insert($begin);
+
+        $klien = [
+            'nama' => 'user1',
+            'email' => 'user1@gmail.com',
+            'password' => '12345',
+        ];
+
+        $this->db->table('client')->insert($klien);
     }
 }

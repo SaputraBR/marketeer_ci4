@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="flex justify-center mt-4 sm:mt-5">
-                        <button type="submit" class="w-full py-1 rounded-lg font-bold text-white border-2 bg-login">Daftar</button>
+                        <button type="submit" class="w-full py-2 rounded-lg font-bold text-white border-2 bg-login">Daftar</button>
                     </div>
                 </form>
                 <div class="flex border-t-2 border-[#ff4800] w-3/4 mx-auto">

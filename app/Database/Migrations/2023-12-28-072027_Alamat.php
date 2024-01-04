@@ -4,36 +4,36 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Market extends Migration
+class Alamat extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'admin_id' => [
+            'client_id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+            'tgl_lahir' => [
+                'type'       => 'DATE',
+                'null' => true,
             ],
-            'email' => [
+            'jns_kelamin' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '100',
             ],
             'photo' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'password' => [
+            'no_handphone' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '200',
+                'constraint' => '100',
             ]
         ]);
-        $this->forge->addKey('admin_id', true);
-        $this->forge->createTable('admin');
+        $this->forge->addKey('client_id', true);
+        $this->forge->createTable('client_detail');
 
         $this->forge->addField([
             'client_id' => [
@@ -42,29 +42,26 @@ class Market extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama' => [
+            'alamat' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'email' => [
+            'tempat' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '100',
             ],
-            'password' => [
+            'hp_alamat' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '200',
+                'constraint' => '100',
             ]
         ]);
         $this->forge->addKey('client_id', true);
-        $this->forge->createTable('client');
-
-
-
+        $this->forge->createTable('client_alamat');
     }
 
     public function down()
     {
-        $this->forge->dropTable('admin');
-        $this->forge->dropTable('client');
+        $this->forge->dropTable('client_detail');
+        $this->forge->dropTable('client_alamat');
     }
 }
