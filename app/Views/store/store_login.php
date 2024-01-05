@@ -5,17 +5,21 @@
 
 <body class="max-w-screen-2xl max-h-max mx-auto">
     <div class="box-main">
+        <?php if(!empty(session()->getFlashdata('error'))){ ?>
+            <div class="top-0 fixed w-full flex">
+                <div class="mx-auto py-4 px-8 bg-[#ff950b] rounded-md">
+                    <p class="sm:text-xl text-white font-semibold">
+                        <?php echo session()->getFlashdata('error');?>
+                    </p>
+                </div>
+            </div>
+        <?php } ?>
         <div class="content">
             <div class="w-full h-full bg-white pt-4 container-log">
                 <div class="flex justify-center w-full h-auto">
                     <div class="exo text-3xl text-[#ff4800]">MarketEer</div>
                 </div>
                 <form action="/login/verify" method="post" enctype="multipart/form-data" class="w-4/5 mx-auto mt-6 sm:pb-4">
-                    <?php if(!empty(session()->getFlashdata('error'))){ ?>
-                        <div class="alert alert-danger">
-                            <?php echo session()->getFlashdata('error');?>
-                        </div>
-                    <?php } ?>
                     <input type="text" name="user" placeholder="username, email atau no telepon" class="block w-full mb-5 mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
                     <input type="password" name="password" placeholder="password" class="block w-full mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">

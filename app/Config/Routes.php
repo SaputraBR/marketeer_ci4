@@ -35,6 +35,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
 $routes->add('/login/verify', 'Home::verify');
 $routes->get('/login/forgot', 'Home::forgot');
+$routes->get('/logout', 'Home::logout');
 $routes->get('/product', 'Home::product');
 $routes->get('/signup', 'Home::signup');;
 $routes->get('/terms', 'Home::terms');
@@ -48,8 +49,10 @@ $routes->group('', ['filter' => 'storeFilter'], static function($routes){
 });
 
 $routes->get('/adm/login', 'Admin::login');
+$routes->add('/logging', 'Admin::masuk');
+$routes->get('/outing', 'Admin::keluar');
 
-$routes->get('/adm', 'Dashboard::dashboard');
+$routes->get('/adm', 'Dashboard::dashboard', ['filter' => 'adminFilter']);
 $routes->get('/adm/dash/penilaian', 'Dashboard::penilaian');
 $routes->get('/adm/dash/penilaian/detail', 'Dashboard::penilaianDetail');
 $routes->get('/adm/dash/pesan', 'Dashboard::pesan');

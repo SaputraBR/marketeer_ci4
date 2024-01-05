@@ -2,26 +2,45 @@
 
 namespace App\Controllers;
 
-use App\Models\ClientModel; 
+use App\Models\ClientModel;
 
 class Home extends BaseController
 {
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/');
+    }
+
     public function verify()
     {
-        $dbase = new ClientModel;
-        $nama  = $this->request->getPost("nama");
-        $pass  = $this->request->getPost("password");
-        $verif = $dbase->where(['nama', $nama])->first();
+        $model = new ClientModel();
+        $name  = $this->request->getPost('user');
+        $pass  = $this->request->getPost('password');
+        $db    = $model->user($name, $pass);
 
-        if ($verif)
+        if (($db['nama'] == $name) && ($db['password'] == $pass))
         {
-            $word = $verif["password"];
-            if (password_verify($pass, $word))
-            {
+            session()->set([
+                'username' => $db['nama'],
+                'logged_in' => TRUE,
+            ]);
+            return redirect()->to('/');
+        } else {
+            session()->setFlashdata('error', 'Salah blokkk!!!');
+            return redirect()->back();
+        }
+    
+        /*password hash
+        if($db){
+            $word = $db['password'];
+
+            if(password_verify($pass, $word)){
                 session()->set([
-                    "user" => $verif["nama"],
-                    "logged_in" => TRUE,
+                    'username' => $db['nama'],
+                    'logged_in' => TRUE
                 ]);
+                return redirect()->to('/');
             } else {
                 session()->setFlashdata('error', 'Data yang anda masukkan salah!');
                 return redirect()->back();
@@ -29,7 +48,7 @@ class Home extends BaseController
         } else {
             session()->setFlashdata('error', 'Data yang anda masukkan salah!');
             return redirect()->back();
-        }
+        }*/
     }
 
     public function index()
@@ -62,6 +81,7 @@ class Home extends BaseController
     
     public function login()
     {
+        
         return view('store/store_login');
     }
 

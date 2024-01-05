@@ -6,6 +6,12 @@ use CodeIgniter\Model;
 
 class ClientModel extends Model
 {
+    public function user($nm, $pw)
+    {
+        return $this->db->table('client')
+        ->where(['nama' => $nm], ['password' => $pw])
+        ->get()->getRowArray();
+    }
 
     public function klien()
     {
