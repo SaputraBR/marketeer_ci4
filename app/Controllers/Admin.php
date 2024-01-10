@@ -29,6 +29,7 @@ class Admin extends BaseController
                 'admin' => $db['nama'],
                 'loging_in' => TRUE,
             ]);
+
             return redirect()->to('/adm');
         } else {
             session()->setFlashdata('error', 'Salah blokkk!!!');
@@ -39,6 +40,6 @@ class Admin extends BaseController
     public function keluar()
     {
         session()->destroy();
-        return redirect()->to('/adm/login');
+        return redirect()->to(base_url('/adm/login'));
     }
 }

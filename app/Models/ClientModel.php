@@ -6,10 +6,21 @@ use CodeIgniter\Model;
 
 class ClientModel extends Model
 {
-    public function user($nm, $pw)
+    public function tabel()
+    {
+        return $this->db->table('client');
+    }
+
+    public function smax()
     {
         return $this->db->table('client')
-        ->where(['nama' => $nm], ['password' => $pw])
+        ->selectMax('user_id')->get()->getRow();
+    }
+
+    public function user($em, $pw)
+    {
+        return $this->db->table('client')
+        ->where(['email' => $em], ['password' => $pw])
         ->get()->getRowArray();
     }
 
@@ -31,16 +42,21 @@ class ClientModel extends Model
         $items = array();
         foreach ($query as $row)
         {
-            $items[$row["client_id"]]["nama"] = $row["nama"];
-            $items[$row["client_id"]]["lahir"] = $row["tgl_lahir"];
-            $items[$row["client_id"]]["kelamin"] = $row["jns_kelamin"];
-            $items[$row["client_id"]]["email"] = $row["email"];
-            $items[$row["client_id"]]["hp"] = $row["no_handphone"];
-            $items[$row["client_id"]]["alamat"][$row["alamat_id"]] = array(
-                "tempat" => $row["tempat"],
-                "alamat" => $row["alamat"],
-                "phone" => $row["hp_alamat"],
-            );
+            $sesi = session()->get('id');
+            if ($row['user_id'] == $sesi)
+            {
+                $items[$row["client_id"]]["nama"] = $row["nama"];
+                $items[$row["client_id"]]["lahir"] = $row["tgl_lahir"];
+                $items[$row["client_id"]]["kelamin"] = $row["jns_kelamin"];
+                $items[$row["client_id"]]["email"] = $row["email"];
+                $items[$row["client_id"]]["hp"] = $row["no_handphone"];
+                $items[$row["client_id"]]["alamat"][$row["alamat_id"]] = array(
+                    "tempat" => $row["tempat"],
+                    "alamat" => $row["alamat"],
+                    "phone" => $row["hp_alamat"],
+                );
+            }
+
         }
         return $items;
     }

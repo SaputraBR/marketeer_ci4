@@ -113,17 +113,12 @@
             </div>
         </div>
         <div class="col-span-2 w-auto sm:mr-4" id="main-section">
-            
-            <?php foreach($client as $user) :?>
-
-
-
-                <section class="w-auto sm:w-full h-auto bg-white border-2 border-slate-300 relative pb-2 sm:pb-8" id="data-pribadi">
-                    <div class="flex bg-gray-300 divide-x-2 divide-gray-100" id="navbar-bio">
-                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio navbio-aktif">Biodata</span>
-                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Alamat</span>
-                        <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Keamanan</span>
-                    </div>
+            <section class="w-auto sm:w-full h-auto bg-white border-2 border-slate-300 relative pb-2 sm:pb-8" id="data-pribadi">
+                <div class="flex bg-gray-300 divide-x-2 divide-gray-100" id="navbar-bio">
+                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio navbio-aktif">Biodata</span>
+                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Alamat</span>
+                    <span class="px-6 py-2 self-center text-sm sm:text-base hover:cursor-pointer nav-bio">Keamanan</span>
+                </div>
 
                     <div class="flex relative h-auto py-4 w-full absolute">
                         <div class="w-full h-auto sm:px-8 shrink-0 md:flex" id="biodata-diri">
@@ -145,6 +140,7 @@
                                 </div>
                             </div>
                             <div class="w-auto ml-2 sm:text-base text-sm px-2 sm:px-0 mt-3 sm:mt-0">
+                            <?php foreach($client as $user) :?>
                                 <h1 class="font-semibold">Ubah Data Pribadi</h1>
                                 <div class="grid grid-cols-12 gap-2 mt-2">
                                     <p class="col-span-4">Nama</p>
@@ -174,9 +170,11 @@
                                 <div class="mt-4 sm:mt-8 flex">
                                     <button class="px-4 py-2 text-white font-semibold bg-[#ff4800] hover:bg-[#dc3e00]">change</button>
                                 </div>
+                            <?php endforeach;?>
                             </div>
                         </div>
 
+                <?php foreach($client as $user) :?>
                         <div class="w-full h-auto bg-white px-4 sm:px-0 shrink-0 hidden" id="data-alamat">
                             <?php foreach($user["alamat"] as $id => $address) :?>    
                                 <div class="w-auto sm:w-2/3 h-auto mx-auto mt-4 relative rounded-lg hover:cursor-pointer border border-slate-600 address">
@@ -194,7 +192,6 @@
                                 </div>
                             <?php endforeach;?>
                         </div>
-
 
                         <div class="w-full h-auto flex bg-white shrink-0 hidden" id="keamanan">
                             <div class="space-y-2 pl-4 self-center" id="tombol-ubah">
@@ -257,8 +254,8 @@
                             </div>
                         </div>
                     </div>
-                </section>
-            <?php endforeach;?>
+                <?php endforeach;?>
+            </section>
 
             <section class="w-full h-auto bg-white border-2 border-slate-300 relative mt-10" id="pesan">
                 <div class="flex bg-gray-300 px-4 py-1">

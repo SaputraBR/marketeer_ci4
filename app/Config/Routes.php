@@ -37,7 +37,8 @@ $routes->add('/login/verify', 'Home::verify');
 $routes->get('/login/forgot', 'Home::forgot');
 $routes->get('/logout', 'Home::logout');
 $routes->get('/product', 'Home::product');
-$routes->get('/signup', 'Home::signup');;
+$routes->get('/signup', 'Home::signup');
+$routes->add('/signup/new', 'Home::regist');
 $routes->get('/terms', 'Home::terms');
 $routes->group('', ['filter' => 'storeFilter'], static function($routes){
     $routes->get('/akun', 'Home::client');

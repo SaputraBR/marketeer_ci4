@@ -20,7 +20,7 @@
                     <div class="exo text-3xl text-[#ff4800]">MarketEer</div>
                 </div>
                 <form action="/login/verify" method="post" enctype="multipart/form-data" class="w-4/5 mx-auto mt-6 sm:pb-4">
-                    <input type="text" name="user" placeholder="username, email atau no telepon" class="block w-full mb-5 mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
+                    <input type="text" name="user" placeholder="email atau telepon" class="block w-full mb-5 mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
                     <input type="password" name="password" placeholder="password" class="block w-full mt-1 rounded-sm bg-slate-100 py-1 px-2 mx-auto border focus:border-sky-300 focus:ring-sky-300 focus:ring-1 focus:outline-none">
 
