@@ -9,7 +9,7 @@ class Home extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(base_url());
+        return redirect()->to(base_url('/'));
     }
 
     public function verify()
@@ -18,18 +18,6 @@ class Home extends BaseController
         $name  = $this->request->getPost('user');
         $pass  = $this->request->getPost('password');
         $db    = $model->user($name, $pass);
-
-        /*if (($db['email'] == $name) && ($db['password'] == $pass))
-        {
-            session()->set([
-                'username' => $db['nama'],
-                'logged_in' => TRUE,
-            ]);
-            return redirect()->to(base_url());
-        } else {
-            session()->setFlashdata('error', 'Salah blokkk!!!');
-            return redirect()->back();
-        }*/
     
         if($db){
             $word = $db['password'];
@@ -151,5 +139,10 @@ class Home extends BaseController
     public function wishlist()
     {
         return view('store/store_wishlist');
+    }
+
+    public function favorit()
+    {
+        
     }
 }

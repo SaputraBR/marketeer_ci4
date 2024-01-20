@@ -27,10 +27,10 @@ class Admin extends BaseController
         {
             session()->set([
                 'admin' => $db['nama'],
-                'loging_in' => TRUE,
+                'adm_login' => TRUE,
             ]);
 
-            return redirect()->to('/adm');
+            return redirect()->to(base_url('/adm'));
         } else {
             session()->setFlashdata('error', 'Salah blokkk!!!');
             return redirect()->back();
@@ -39,7 +39,7 @@ class Admin extends BaseController
 
     public function keluar()
     {
-        session()->destroy();
+        session()->remove('adm_login');
         return redirect()->to(base_url('/adm/login'));
     }
 }

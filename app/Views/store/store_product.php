@@ -200,20 +200,26 @@
                     </div>
                     <div class="mt-5 px-4">
                         <div class="flex justify-center mb-2">
-                            <button class="lg:flex justify-center py-2 px-4 mr-2 w-full bg-amber-300 hover:bg-amber-400 font-semibold text-lg">
-                                <span class="self-center mr-1">
-                                    <i class="fa-solid fa-heart"></i>
-                                </span>
-                                <p class="sm:block md:hidden lg:block">wishlist</p>
-                            </button>
-                            <button class="lg:flex justify-center py-2 px-4 ml-2 w-full bg-amber-300 hover:bg-amber-400 font-semibold text-lg">
-                                <span class="self-center mr-1">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </span>
-                                <p class="sm:block md:hidden lg:block">keranjang</p>
-                            </button>
+                            <a href="/wishlist/add" class="w-1/2 mr-2">
+                                <button class="lg:flex justify-center py-2 px-4 w-full bg-amber-300 hover:bg-amber-400 font-semibold text-lg">
+                                    <span class="self-center mr-1">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    <p class="sm:block md:hidden lg:block">wishlist</p>
+                                </button>
+                            </a>
+                            <a href="/keranjang/add" class="w-1/2">
+                                <button class="lg:flex justify-center py-2 px-4 w-full bg-amber-300 hover:bg-amber-400 font-semibold text-lg">
+                                    <span class="self-center mr-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </span>
+                                    <p class="sm:block md:hidden lg:block">keranjang</p>
+                                </button>
+                            </a>
                         </div>
-                        <a href="/beli"><button class="py-2 mb-2 border border-sky-600 bg-sky-100 w-full font-semibold text-xl hover:border-sky-600 hover:bg-sky-300">beli</button></a>
+                        <a href="/beli">
+                            <button class="py-2 mb-2 border border-sky-600 bg-sky-100 w-full font-semibold text-xl hover:border-sky-600 hover:bg-sky-300">beli</button>
+                        </a>
                     </div>
                 </div>
             </div>

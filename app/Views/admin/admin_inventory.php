@@ -23,7 +23,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="flex mb-8">
                 <h1 class="text-2xl mr-2">1</h1>
                 <div class="grid grid-cols-4 gap-4 bg-[#89a7b1] p-2 rounded-lg overflow-hidden">

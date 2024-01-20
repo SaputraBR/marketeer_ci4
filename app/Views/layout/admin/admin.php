@@ -2,7 +2,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no' />
         <title>MarketEer</title>
+        <link rel="icon" href="/img/MARKETEER_CROP.png">
         <link rel="stylesheet" type="text/css" href="/dist/tailwind.css">
         <link rel="stylesheet" type="text/css" href="/src/custom.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">

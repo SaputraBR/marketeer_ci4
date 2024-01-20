@@ -17,7 +17,6 @@
             <div class="flex h-full w-full text-[#fa8c00]" id="adminArea">
                 <p class="text-4xl font-bold self-center mt-4 mx-4 w-full border-b-2 border-slate-800">Admin Area</p>
             </div>
-            <div></div>
         </header>
 
         <section class="my-4 mx-4">

@@ -83,47 +83,16 @@
             </div>
 
             <div class="mt-1 bg-slate-100 py-4 px-8 font-semibold">
-                <div class="grid grid-cols-6  w-full">
-                    <div class="p-2 col-span-1">
-                        <p>gambar 1</p>
-                        <div class="border-2 border-sky-500">
-                            <img src="/img/nike-jordan.jpg" alt="" class="h-32 w-full object-cover">
-                        </div>
+                <div class="flex">
+                    <div class="w-48 mb-2">
+                        <p class="mb-1">gambar</p>
+                        <img class="relative object-cover rounded-lg border-2 border-sky-500 h-48" src="/img/nike-jordan.jpg" alt="">
                     </div>
-                    <div class="p-2 col-span-1">
-                        <p>gambar 2</p>
-                        <div class="border-2 border-sky-500">
-                            <img src="/img/air_jordan_7_3.jpg" alt="" class="h-32 w-full object-cover">
-                        </div>
+                    <div class="col-span-3 ml-8 mr-4 self-center">
+                        <button class="py-2 px-4 mb-5 w-24 block bg-[#ff950b] hover:bg-[#f28900] text-white font-semibold rounded-sm">delete</button>
+                        <button class="py-2 px-4 w-24 block border-2 border-[#f28900] hover:bg-[#f28900] hover:border-[#f28900] hover:text-white font-semibold rounded-sm">change</button>
                     </div>
-                    <div class="p-2 col-span-1">
-                        <p>gambar 3</p>
-                        <div class=" border-2 border-sky-500">
-                            <img src="/img/air_jordan_7_2.jpg" alt="" class="h-32 w-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-2 col-span-1">
-                        <p>gambar 4</p>
-                        <div class="border-2 border-sky-500">
-                            <img src="/img/air_jordan_7.jpg" alt="" class="h-32 w-full object-cover">
-                        </div> 
-                    </div> 
-                    <div class="p-2 col-span-1">
-                        <p>gambar 5</p>
-                        <div class=" border-2 border-sky-500">
-                            <img src="/img/none.png" alt="" class="h-32 w-full object-cover">
-                        </div>
-                    </div>
-                    <div class="p-2 col-span-1">
-                        <p>gambar 6</p>
-                        <div class="border-2 border-sky-500">
-                            <img src="/img/none.png" alt="" class="h-32 w-full object-cover">
-                        </div> 
-                    </div> 
-                </div>     
-                <div class="mt-2 flex">
-                    <a href="/adm/inventory/edit/gambar" class="mr-4 px-4 py-2 bg-[#ff950b] hover:bg-[#f28900] rounded-lg text-white font-semibold">edit</a>
-                </div>           
+                </div>         
             </div>
             
             <div class="flex mt-4">

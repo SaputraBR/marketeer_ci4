@@ -10,9 +10,9 @@ class AdminFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if(is_null(session()->get('loging_in')))
+        if(is_null(session()->get('adm_login')))
         {
-            return redirect()->to('/adm/login');
+            return redirect()->to(base_url('/adm/login'));
         }
     }
 
