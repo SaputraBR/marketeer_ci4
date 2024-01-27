@@ -3,9 +3,11 @@
 <?= $this->section('content')?>
     <main class="w-10/12 md:w-4/5 ml-auto px-2 py-3 md:px-12 md:py-4">
         <section class="">
+
             <div class="mb-4" id="adminArea">
                 <p class="text-4xl font-bold self-center w-full text-[#fa8c00] border-b-2 border-slate-800">Product</p>
                 <div class="flex mt-2">
+
                     <a href="/adm/inventory/tambah">
                         <button class="px-2 py-1 flex rounded-md bg-red-100 hover:bg-red-200">
                             <span class="self-center mr-1" style="fill: rgb(220 38 38)">
@@ -23,6 +25,54 @@
                     </button>
                 </div>
             </div>
+            <?php $i = 0; foreach ($barang as $produk): $i++ ?>
+                <div class="flex mb-8" id="produk">
+                    <h1 class="text-2xl mr-2"><?= $i ?></h1>
+                    <div class="grid grid-cols-4 gap-4 bg-[#89a7b1] p-2 rounded-lg overflow-hidden">
+                        <div class="col-span-1">
+                            <img class="relative object-cover h-48 w-48 rounded-l-lg" src="/img/post_picture/<?= $produk["gambar"]?>" alt="">
+                        </div>
+                        <div class="col-span-3 ml-2 mr-4 mt-3">
+                            <p class="text-xl font-semibold text-w mb-2"><?= $produk["nama"]?></p>
+                            <div class="grid grid-cols-5 gap-3">
+                                <div class="col-span-1">
+                                    <span class="flex">
+                                        <p>HPP</p>
+                                        <p class="ml-auto">:</p>
+                                    </span>
+                                    <span class="flex">
+                                        <p>Harga Jual</p>
+                                        <p class="ml-auto">:</p>
+                                    </span>
+                                    <span class="flex">
+                                        <p>Stok</p>
+                                        <p class="ml-auto">:</p>
+                                    </span>
+                                </div>
+                                <span class="col-span-4">
+                                    <p>Rp<span><?= number_format($produk["hpp"])?></span></p>
+                                    <p>Rp<span><?= number_format($produk["jual"])?></span></p>
+                                    <p><?= $produk["stok"]?></p>
+                                </span>
+                                <div class="flex col-span-5 mt-1 mb-3">
+                                    <a href="<?= base_url('adm/inventory/'.$produk["plu"].'/edit')?>" class="px-2 py-1 mr-3 rounded-lg font-semibold text-white bg-[#005bc5] hover:bg-[#006ae2]">
+                                        edit
+                                    </a>
+                                    <a href="#" class="px-2 py-1 mr-3 rounded-lg font-semibold text-white bg-[#fd0a54] hover:bg-[#ff2b6b]">
+                                        delete
+                                    </a>
+                                    <p class="kondisi hidden"><?= $produk["kondisi"]?></p>
+                                    <div class="mr-3 buttons r" id="button-1">
+                                        <input type="checkbox" class="checkbox" value="" id="input-on">
+                                        <div class="knobs"></div>
+                                        <div class="layer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
             <div class="flex mb-8">
                 <h1 class="text-2xl mr-2">1</h1>
                 <div class="grid grid-cols-4 gap-4 bg-[#89a7b1] p-2 rounded-lg overflow-hidden">
@@ -295,8 +345,18 @@
                 } else {
                     this.value = "on"
                 }
-                console.log(this.value)
             })
+        }
+
+        var kond = document.querySelectorAll(".kondisi")
+        for (i = 0; i < kond.length; i++){
+            var a = kond[i].nextElementSibling.querySelector("input")
+           if (kond[i].innerText == "ON"){
+               a.checked = false
+           } else {
+               a.checked = true
+           }
+            
         }
     </script>
 <?= $this->endSection()?>

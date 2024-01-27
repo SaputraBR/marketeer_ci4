@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AdminModel;
+use App\Models\PostModel;
 
 class Inventory extends BaseController
 {
@@ -13,15 +14,15 @@ class Inventory extends BaseController
         return view('admin/admin_inventory', $data);
     }
 
-    public function edit()
+    public function edit($plu)
     {
-        return view('admin/admin_inventory_edit');
+        $admin = new AdminModel();
+        $post = new PostModel();
+        $data['barang'] = $admin->edit($plu);
+        
+        return view('admin/admin_inventory_edit', $data);
     }
 
-    public function editGambar()
-    {
-        return view('admin/admin_inventory_edit_gambar');
-    }
 
     public function tambah()
     {
@@ -36,7 +37,7 @@ class Inventory extends BaseController
     public function invTambah()
     {
         $validation = \Config\Services::validation();
-        //$validation->setRules(['gambar' => 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,6096]']);
+        $validation->setRules(['gambar' => 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]|max_size[gambar,6096]']);
         $validation->setRules(['nama' => 'required']);
         $isDataValid = $validation->withRequest($this->request)->run();
 
@@ -54,7 +55,15 @@ class Inventory extends BaseController
             $hpp  = $this->request->getPost('harga-hpp');
             $jual  = $this->request->getPost('harga-jual');
             $foto   = $this->request->getFile('foto');
-            $foto->move(WRITEPATH . '../public/img/post_picture');
+            $gmbr;
+            if (file_exists($foto))
+            {
+                $foto->move(WRITEPATH . '../public/img/post_picture');
+                $gmbr = $foto->getName();
+            } else {
+                $gmbr = "none.png";
+            }
+
 
             $data1 = array(
                 'barcode' => $barcode,
@@ -70,14 +79,21 @@ class Inventory extends BaseController
                 'barcode' => $barcode,
                 'hpp' => $hpp,
                 'harga_jual' => $jual,
-                'gambar' => $foto->getName(),
+                'gambar' => $gmbr,
                 'plu' => $plu
             );
 
-            $model->create($data1, $data2);
+            $data3 = array(
+                'nama' => $nama,
+                'hpp' => $hpp,
+                'plu' => $plu
+            );
+
+            $model->create($data1, $data2, $data3);
             return redirect()->to(base_url('/adm/inventory/tambah'));
         }
 
-        return redirect()->to(base_url('/adm/inventory'));
+        return redirect()->to(base_url('/adm/inventory/tambah'));
     }
+
 }

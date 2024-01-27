@@ -59,12 +59,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex mt-6">
-                    <button type="button" class="mr-4 px-4 py-2 bg-slate-500 hover:bg-slate-600 rounded-lg text-white font-semibold">batal</button> 
-                    <button type="submit" class="px-4 py-2 bg-slate-500 hover:bg-slate-600 rounded-lg text-white font-semibold">simpan</button>
-                </div>
 
-                <div class="h-48 w-full bg-slate-50 mt-3 rounded-md overflow-y-scroll relative">
+                <div class="h-48 w-full bg-slate-50 mt-6 rounded-md overflow-y-scroll relative">
                     <div class="grid grid-cols-12 border-b-2 border-slate-400 sticky top-0 bg-slate-50">
                         <div class="col-span-1 flex justify-center border-r-2 border-slate-400 py-2">no</div>
                         <div class="col-span-2 flex justify-center border-r-2 border-slate-400 py-2">barcode</div>
@@ -214,6 +210,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="flex mt-6">
+                    <button type="button" class="mr-4 px-4 py-2 bg-slate-500 hover:bg-slate-600 rounded-lg text-white font-semibold">batal</button> 
+                    <button type="submit" class="px-4 py-2 bg-slate-500 hover:bg-slate-600 rounded-lg text-white font-semibold">simpan</button>
                 </div>
            </form>
         </section>

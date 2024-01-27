@@ -19,16 +19,19 @@ class AdminModel extends Model
         ->get()->getRowArray();
     }
 
-    function create($data1, $data2){
-        $this->db->table('produk')->insert($data1);
+    function create($data1, $data2, $data3){
+        $siji = $this->db->table('produk')->insert($data1);
         $data2['id_insert'] = $this->db->insertID();
-        return $this->db->table('produk_harga')->insert($data2);
+        $dua = $this->db->table('produk_harga')->insert($data2);
+        $data3['id_insert'] = $this->db->insertID();
+        return $this->db->table('produk_stok')->insert($data3);
     }
 
     public function showBarang()
     {
         $query = $this->db->table('produk')
         ->join('produk_harga', 'produk_harga.plu = produk.plu')
+        ->join('produk_stok', 'produk_stok.plu = produk.plu')
         ->get()->getResultArray();
         
         $items = array();
@@ -44,7 +47,16 @@ class AdminModel extends Model
             $items[$row["plu"]]["hpp"] = $row["hpp"];
             $items[$row["plu"]]["jual"] = $row["harga_jual"];
             $items[$row["plu"]]["gambar"] = $row["gambar"];
+            $items[$row["plu"]]["stok"] = $row["stok"];
         }
         return $items;
+    }
+
+    function edit($plu)
+    {
+        return $this->db->table('produk')
+        ->join('produk_harga', 'produk_harga.plu = produk.plu')
+        ->join('produk_stok', 'produk_stok.plu = produk.plu')
+        ->where('produk.plu', $plu)->get()->getResultArray();
     }
 }   
