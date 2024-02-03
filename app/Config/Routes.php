@@ -75,7 +75,7 @@ $routes->group('', ['filter' => 'adminFilter'], static function($routes){
     $routes->get('/adm/stocks/retur', 'Stocks::retur');
 
     $routes->add('/adm/inventory/(:segment)/edit', 'Inventory::edit/$1');
-    $routes->get('/adm/inventory/edit', 'Inventory::edit');
+    $routes->add('/adm/inventory/edit/method', 'Inventory::editExc');
     $routes->get('/adm/inventory/edit/gambar', 'Inventory::editGambar');
     $routes->get('/adm/inventory/tambah', 'Inventory::tambah');
     $routes->add('/adm/inventory/tambah/method', 'Inventory::invTambah');

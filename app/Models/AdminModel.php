@@ -19,7 +19,8 @@ class AdminModel extends Model
         ->get()->getRowArray();
     }
 
-    function create($data1, $data2, $data3){
+    function create($data1, $data2, $data3)
+    {
         $siji = $this->db->table('produk')->insert($data1);
         $data2['id_insert'] = $this->db->insertID();
         $dua = $this->db->table('produk_harga')->insert($data2);
@@ -58,5 +59,13 @@ class AdminModel extends Model
         ->join('produk_harga', 'produk_harga.plu = produk.plu')
         ->join('produk_stok', 'produk_stok.plu = produk.plu')
         ->where('produk.plu', $plu)->get()->getResultArray();
+    }
+
+    function new($plu, $data1, $data2, $data3)
+    {
+        $siji = $this->db->table('produk')->where('plu', $plu)->update($data1);
+        $dua = $this->db->table('produk_harga')->where('plu', $plu)->update($data2);
+        return $this->db->table('produk_stok')->where('plu', $plu)->update($data3);
+        
     }
 }   

@@ -19,13 +19,21 @@
 
 <?= $this->section('content')?>
     <main class="w-10/12 md:w-4/5 ml-auto px-2 py-10 md:px-12 md:py-4">
-        <div class="flex w-full justify-center">
-            <div class="h-16 px-12 flex border-2 text-[#009b6a] border-[#00d08e] bg-[#d5f7ec] absolute rounded-md">
-                <p class="self-center text-xl font-semibold">Data Gagal Ditambahkan !</p>
+        <?php if(!empty(session()->getFlashdata('berhasil'))){ ?>
+            <div class="flex w-full justify-center" id="promt">
+                <div class="h-16 px-12 flex border-2 text-[#009b6a] border-[#00d08e] bg-[#d5f7ec] absolute rounded-md">
+                    <p class="self-center text-xl font-semibold"><?= session()->getFlashdata('berhasil') ?></p>
+                </div>
             </div>
-        </div>
+        <?php } ?>
+        <?php if(!empty(session()->getFlashdata('gagal'))){ ?>
+            <div class="flex w-full justify-center" id="promt">
+                <div class="h-16 px-12 flex border-2 text-[#ff0000] border-[#f50000] bg-[#fce3e3] absolute rounded-md">
+                    <p class="self-center text-xl font-semibold"><?= session()->getFlashdata('gagal') ?></p>
+                </div>
+            </div>
+        <?php } ?>
         <section class="w-full h-auto py-8 px-12 rounded-lg bg-slate-400">
-
             <form method="post" action="/adm/inventory/tambah/method" enctype="multipart/form-data">
                 <div class="bg-slate-100 py-2 px-8 rounded-t-lg font-semibold">
                     <div class="mt-4">
@@ -88,7 +96,7 @@
                                 <div class="col-span-10 flex">
                                     <p class="self-center mr-3">:</p>
                                     <p class="self-center mr-1">Rp</p>
-                                    <input type="text" name="harga-hpp" id="harga-hpp" class="rounded-md px-2 py-1 w-2/4 bg-slate-200 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none" value="">
+                                    <input type="text" name="harga-hpp" id="harga-hpp" class="rounded-md px-2 py-1 w-2/4 bg-slate-200 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none" required value="">
                                 </div>
                             </div>
                             <div class="grid grid-cols-12 mt-2">
@@ -149,6 +157,13 @@
                 });
             
             });
+
+            var prompt = document.querySelector("#promt")
+            if (prompt)
+            {
+                window.onload = setInterval(() => prompt.style.opacity = '0', 1000)
+            }
+            
         </script>
 <?= $this->endSection()?>
   
