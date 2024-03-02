@@ -68,4 +68,11 @@ class AdminModel extends Model
         return $this->db->table('produk_stok')->where('plu', $plu)->update($data3);
         
     }
+
+    public function foundit($key)
+    {
+        return $this->db->table('produk')
+        ->join('produk_harga', 'produk_harga.plu = produk.plu')
+        ->like('nama', $key)->orLike('produk.barcode', $key)->get()->getResultArray();
+    }
 }   

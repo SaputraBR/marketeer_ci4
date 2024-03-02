@@ -55,7 +55,7 @@
                             <div class="col-span-2 self-center">PLU</div>
                             <div class="col-span-10 flex">
                                 <p class="self-center mr-3">:</p>
-                                <input type="text" name="plu" id="plu" class="rounded-md px-2 py-1 w-2/4 bg-slate-200 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none" value="<?= $produk?>">
+                                <input type="text" name="plu" id="plu" class="rounded-md px-2 py-1 w-2/4 bg-slate-200 border border-slate-300 focus:border-sky-500 focus:ring-sky-500 focus:ring-1 focus:outline-none" value="<?= $produk?>" readonly>
                             </div>
                         </div>
                         <div class="grid grid-cols-12 mt-2">

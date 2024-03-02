@@ -36,13 +36,21 @@ class Inventory extends BaseController
             $berat  = $this->request->getPost('berat');
             $hpp  = $this->request->getPost('harga-hpp');
             $jual  = $this->request->getPost('harga-jual');
+            $tambah = $this->request->getPost('tambahan');
             $foto   = $this->request->getFile('foto');
             $gmbr;
-            foreach ($dat as $az){
-                $gmbr = $az['gambar'];
+
+            if ($tambah) {
+                $gmbr = "none.png";
+            } elseif (!file_exists($foto)) {
+                foreach ($dat as $wet)
+                {
+                    $gmbr = $wet['gambar'];
+                }
+            } else {
+                $foto->move(WRITEPATH . '../public/img/post_picture');
+                $gmbr = $foto->getName();
             }
-
-
 
             $data1 = array(
                 'barcode' => $barcode,
@@ -69,7 +77,7 @@ class Inventory extends BaseController
             );
             $admin->new($plu, $data1, $data2, $data3);
 
-            return redirect()->to(base_url('/adm/inventory/'.$this->request->uri->getSegment(3).'/edit/'.$gmbr))->with("berhasil","Data berhasil diubah!");
+            return redirect()->to(base_url('/adm/inventory/'.$this->request->uri->getSegment(3).'/edit/'))->with("berhasil","Data berhasil diubah!");
         }
 
         return view('admin/admin_inventory_edit', $data);

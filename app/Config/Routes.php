@@ -67,6 +67,8 @@ $routes->group('', ['filter' => 'adminFilter'], static function($routes){
     $routes->get('/adm/dash/pesan', 'Dashboard::pesan');
     $routes->get('/adm/dash/pesan/detail', 'Dashboard::pesanDetail');
     $routes->get('/adm/dash/post', 'Dashboard::post');
+    $routes->add('/adm/dash/post/tambah', 'Dashboard::tambah');
+    $routes->add('/adm/dash/post/tambah/cari', 'Dashboard::tambahCari');
     $routes->get('/adm/dash/post/detail', 'Dashboard::postDetail');
 
     $routes->get('/adm/stocks/in', 'Stocks::stockin');
