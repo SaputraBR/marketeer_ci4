@@ -1345,3 +1345,161 @@ function love() {
         }
     }
 }
+
+function aztank() {
+    $(document).ready(function(){
+        let number  = new Intl.NumberFormat('en-US', {
+            style: 'decimal',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })
+        var modal   = document.getElementById('modal-filter');
+        var button  = document.getElementById('close-button');
+
+        button.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        var minus = document.querySelectorAll("#minus")
+        for (i = 0; i < minus.length; i++){
+            minus[i].onclick = function(){
+                if (this){
+                    var par = $(".putin").find(".terpilih")
+                    $(par).find("#barcode").val("")
+                    $(par).find("#nama").val("")
+                    $(par).find("#hpp").text("")
+                    $(par).find("#harga").val("")
+                    $(par).find("#mark").val("")
+                    $(par).find("#plus").show()
+                    $(par).find("#minus").hide()
+                }
+            }
+        }
+
+        var grid = document.querySelectorAll("#grid-in")
+        for (i = 0; i < grid.length; i++){
+            var hrg    = $(grid[i]).find("#harga")
+            var format = ""
+            $(hrg).on("keyup", function(){
+                number.format(this.value)
+                console.log(number.format(this.value))
+            })
+        }
+
+        var filter  = document.querySelectorAll('#plus');
+        for (i = 0; i < filter.length; i++){
+            filter[i].onclick = function() {
+                modal.style.display = "block"
+                this.classList.add("clicked")
+            }
+        }
+
+        var tambah = document.querySelectorAll("#grid-in")
+        for (i = 0; i < tambah.length; i++) {                
+            (function (index) {
+                tambah[index].addEventListener("click", function () {
+        
+                    for (var i = 0; i < tambah.length; i++){
+                        tambah[i].classList.remove("terpilih");                            
+                    };
+        
+                    let isPresent = false;
+                    //   Check if the class is present or not
+                    this.classList.forEach(function (e) {
+                        if (e == "terpilih") {
+                            isPresent = true;                                                        
+                        } else {
+                            isPresent = false;
+                        }                                            
+                    });                    
+        
+                    //   toggle the presence of class on the basis of the isPresent variable
+                    if (isPresent) {
+                        this.classList.remove("terpilih");
+                    } else {
+                        this.classList.add("terpilih");                            
+                    }
+                });
+            })(i);
+        }
+
+        var isklik = 0
+        $("#btn-cari").click(function(){
+            isklik++
+            
+            if ($("#search").val() == ""){
+                $("#search").attr("required", "required")
+            } else {
+                $(this).html("Mencari...").attr("disabled", "disabled")
+                $.ajax({
+                url: '/adm/dash/post/tambah/cari',
+                type: 'POST',
+                data: {search: $("#search").val()},
+                dataType: "json",
+                beforeSend: function(e) {
+                    if(e && e.overrideMimeType) {
+                    e.overrideMimeType("application/json;charset=UTF-8");
+                    }
+                },
+                success: function(res){
+                    var hasil       = res.data
+
+                    if (hasil == 0){
+                        $("#btn-cari").html("Cari").removeAttr("disabled", "disabled")
+                        $("#ikon-notfound").removeClass("hidden")
+                        $("#view").empty()
+                        $("#ikon-cari").addClass("hidden")
+                        $("#head-tab").addClass("hidden")
+                    } else {
+                        for (i = 0; i < hasil.length; i++){
+                            var $diff =  $('<div class="grid grid-cols-12 relative hover:cursor-pointer hover:bg-slate-100 isklik-'+isklik+'" id="hasil-cari">'+
+                                        '<div class="col-span-4 flex justify-center border-x-2 border-b-2 border-slate-400 py-1" id="bar">'+hasil[i]['barcode']+'</div>' +
+                                        '<div class="col-span-5 flex border-r-2 border-b-2 border-slate-400 py-1">'+
+                                        '<input type="text" name="nam" id="nam" value="'+hasil[i]["nama"]+'" class="text-center w-full outline-none hover:cursor-pointer" style="background-color: transparent" disabled>'+
+                                        '</div>' +
+                                        '<div class="col-span-3 flex justify-center border-r-2 border-b-2 border-slate-400 py-1" id="hpp">'+number.format(hasil[i]['hpp'])+'</div>'+
+                                        '</div>')
+
+                            if (isklik > 1){
+                                $("#view").find(".isklik-"+(isklik-1)+"").remove()
+                                $("#view").append($diff)
+                            } else {
+                                $("#view").append($diff)
+                            }
+                        }
+                        $("#btn-cari").html("Cari").removeAttr("disabled")
+                        $("#ikon-cari").addClass("hidden")
+                        $("#head-tab").removeClass("hidden")
+                        $("#ikon-notfound").addClass("hidden")
+                    }
+
+                    $("#close-button").click(function(){
+                        $("#ikon-cari").removeClass("hidden")
+                        $("#head-tab").addClass("hidden")
+                        $("#view").empty()
+                        $("#search").val("")
+                        $("#ikon-notfound").addClass("hidden")
+                        isklik = 0
+                    })
+
+                    var hasil  = document.querySelectorAll("#hasil-cari")
+                    for (i = 0; i < hasil.length; i++){
+                        hasil[i].onclick = function() {
+                            var par = $(".putin").find(".terpilih")
+                            $(par).find("#barcode").val($(this).find("#bar").text())
+                            $(par).find("#nama").val($(this).find("#nam").val())
+                            $(par).find("#hpp").text($(this).find("#hpp").text())
+                            $("#modal-filter").css("display", "none")
+                            $(par).find("#plus").hide()
+                            $(par).find("#minus").show()
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.responseText)
+                    }
+                })
+            }
+        })
+    })
+}
